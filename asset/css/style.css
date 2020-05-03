@@ -1,0 +1,203 @@
+.b-flex {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+}
+.s-flex {
+    display: flex;
+    flex: 1;
+}
+.fl1 { flex: 1;}
+.fl2 { flex: 2;}
+
+.nav {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+/* Default navigation icon */
+.nav__trigger {
+    display:block;
+    position:absolute;
+    width:30px;
+    height:25px;
+    right:10px;
+    top:10px;
+    z-index:200; 
+}
+
+.nav__icon {
+    display:inline-block;
+    position: relative;
+    width:30px;
+    height:5px;
+    background-color: #FFFFFF;
+    transition-property: background-color, transform;
+    transition-duration: 300ms;
+}
+.nav__icon:before, .nav__icon:after {
+    content:'';
+    display:block;
+    width:30px;
+    height:5px;
+    position: absolute;
+    background: #FFFFFF;
+    transition-property: margin, transform;
+    transition-duration: 300ms;
+    
+}
+
+.nav__icon:before {
+    margin-top:-10px;
+}
+
+.nav__icon:after {
+    margin-top:10px;
+}
+
+.transform-off { 
+    transform: none; 
+}
+/* onclick navbar */
+.nav--active .nav__trigger {
+    opacity:0.5;
+}
+.nav--active .transition-transform { 
+    transition: transform 0.5s ease-in;
+}
+.nav--active .transform-off { 
+    transform: translate3d( 100%, 0, 0 );
+}
+
+.nav__icon::before {
+    margin-top:0;
+    transform:rotate(90deg);
+  }
+
+  .nav__icon::after {
+    margin-top:0;
+    transform:rotate(180deg);
+  }
+  .nav--active .nav__icon {
+    transform:rotate(135deg);
+  }
+
+.icons:hover {
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition: ease-out 5s;
+}
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
+  
+  /* Position the content inside the overlay */
+  .overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+  
+  /* The navigation links inside the overlay */
+  .overlay input {
+    padding: 8px;
+    font-size: 36px;
+    background-color: rgba(0,0,0, 0.9);
+    color: #818181;
+    width: 100%;
+    transition: 0.3s; /* Transition effects on hover (color) */
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .overlay input:hover, .overlay input:focus {
+    color: #f1f1f1;
+  }
+  
+  /* Position the close button (top right corner) */
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+
+  /* background vid */
+  /* Style the video: 100% width and height to cover the entire window */
+#bgvid {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 80%;
+}
+  
+  /* Add some content at the bottom of the video/page */
+.content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    padding: 10px 20px;
+}
+  
+  /* Style the button used to pause/play the video */
+#btnpause {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 20px;
+}
+  
+#btnpause:hover {
+    background: #ddd;
+    color: black;
+}
+  
+  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+  @media screen and (max-height: 450px) {
+    .overlay input {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+
+
+@media screen and (max-device-width: 30em) {
+    .news {display: none;}
+    .m-news {display: inline-block; top: 38em;}
+    .navbarsize {width: 50%;}
+}
+@media screen and (min-device-width: 30em) {
+    .news {display: flex; flex: 1;}
+    .m-news {display: none;}
+    .navbarsize {width: 30%;}
+}
